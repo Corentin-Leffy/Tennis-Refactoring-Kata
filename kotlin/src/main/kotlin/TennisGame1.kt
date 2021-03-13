@@ -128,8 +128,9 @@ class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     override fun next() {
         val newScoreState = when {
             tennisGame.scoresAreEqual -> Equality(tennisGame)
-            tennisGame.aPlayerIsLeadingByTwoPoints -> Win(tennisGame)
-            else -> return
+            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
+            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByTwoPoints -> Win(tennisGame)
+            else -> Default(tennisGame)
         }
         tennisGame.changeState(newScoreState)
     }
