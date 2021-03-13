@@ -25,9 +25,9 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         val minusResult = pointsPlayer1 - pointsPlayer2
         return when {
             minusResult == 1 -> "Advantage ${leadingPlayer()}"
-            minusResult == -1 -> "Advantage player2"
+            minusResult == -1 -> "Advantage ${leadingPlayer()}"
             minusResult >= 2 -> "Win for ${leadingPlayer()}"
-            else -> "Win for player2"
+            else -> "Win for ${leadingPlayer()}"
         }
     }
 
