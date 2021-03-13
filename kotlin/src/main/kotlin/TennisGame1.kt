@@ -6,9 +6,10 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
     private val player2 = Player(player2Name)
 
     override fun wonPoint(playerName: String) {
-        val playerWhoWonAPoint = player1.takeIf { it.name == playerName } ?: player2
-        playerWhoWonAPoint.wonPoint()
+        playerCalled(playerName).wonPoint()
     }
+
+    private fun playerCalled(name: String) = player1.takeIf { name == it.name } ?: player2
 
     override fun getScore(): String {
         if (scoresAreEqual) return equalScore
