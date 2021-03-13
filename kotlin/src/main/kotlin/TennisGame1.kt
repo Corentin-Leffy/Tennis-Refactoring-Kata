@@ -89,7 +89,7 @@ class Default(override val tennisGame: TennisGame1) : ScoreState {
             tennisGame.scoresAreEqual -> Equality(tennisGame)
             tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
             tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByTwoPoints -> Win(tennisGame)
-            else -> return
+            else -> Default(tennisGame)
         }
         tennisGame.changeState(newScoreState)
     }
