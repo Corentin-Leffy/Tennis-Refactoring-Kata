@@ -43,7 +43,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     internal val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
-    internal val aPlayerIsLeadingByTwoPoints get() = abs(player1.points - player2.points) == 2
+    internal val aPlayerIsLeadingByTwoPoints get() = abs(player1.points - player2.points) >= 2
 
     internal val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
