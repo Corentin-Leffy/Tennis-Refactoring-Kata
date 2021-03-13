@@ -28,26 +28,8 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
     internal fun changeState(newScoreState: ScoreState) {
         scoreState = newScoreState
     }
-
 }
 
-data class Player(val name: String) {
-    var points = 0
-        private set
-
-    fun wonPoint() {
-        points++
-    }
-
-    fun isCalled(name: String): Boolean = this.name == name
-}
-
-
-interface ScoreState {
-    val tennisGame: TennisGame1
-    fun score(): String
-    fun next()
-}
 
 class Default(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String =
