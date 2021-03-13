@@ -4,7 +4,8 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
 
     private val pointsPlayer1
         get() = player1.points
-    private var pointsPlayer2: Int = 0
+    private val pointsPlayer2
+        get() = player2.points
     private val player1 = Player(player1Name)
     private val player2 = Player(player2Name)
 
@@ -12,7 +13,6 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (playerName == player1Name) {
             player1.wonPoint()
         } else {
-            pointsPlayer2 += 1
             player2.wonPoint()
         }
     }
