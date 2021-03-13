@@ -14,7 +14,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
     }
 
     override fun getScore(): String {
-        if (scoresAreEqual()) return scoreEquality()
+        if (scoresAreEqual) return scoreEquality()
         if (aPlayerHasAdvantage()) return endGameScores()
         return basicScore()
     }
@@ -30,7 +30,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
-    private fun scoresAreEqual() = player1.points == player2.points
+    private val scoresAreEqual get() = player1.points == player2.points
 
     private fun basicScore() = "${player1.points.toScore()}-${player2.points.toScore()}"
 
