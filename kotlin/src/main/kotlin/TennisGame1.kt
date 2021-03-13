@@ -4,7 +4,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     val player1 = Player(player1Name)
     val player2 = Player(player2Name)
-    private var scoreState: ScoreState = Default(this)
+    private var scoreState: ScoreState = Equality(this)
 
     override fun wonPoint(playerName: String) {
         playerCalled(playerName).wonPoint()
