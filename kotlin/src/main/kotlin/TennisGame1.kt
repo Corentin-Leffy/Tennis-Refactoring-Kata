@@ -3,8 +3,8 @@ import kotlin.math.abs
 
 class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
-    val player1 = Player(player1Name)
-    val player2 = Player(player2Name)
+    internal val player1 = Player(player1Name)
+    internal val player2 = Player(player2Name)
     private var scoreState: ScoreState = Equality(this)
 
     override fun wonPoint(playerName: String) {
