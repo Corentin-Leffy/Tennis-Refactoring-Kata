@@ -59,3 +59,4 @@ data class Player(val name: String) {
 
     fun isCalled(name: String): Boolean = this.name == name
 }
+
