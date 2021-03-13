@@ -49,3 +49,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         else -> "Forty"
     }
 }
+
+data class Player(
+    val name: String
+)
