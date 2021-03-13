@@ -29,7 +29,7 @@ class Default(override val game: TennisGame1) : ScoreState {
     override fun next(): ScoreState = when {
         areScoresEqual -> Equality(game)
         isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
-        isOnePlayerAdvantaged&& aPlayerIsLeadingByAtLeastTwoPoints -> Win(game)
+        isOnePlayerAdvantaged && aPlayerIsLeadingByAtLeastTwoPoints -> Win(game)
         else -> this
     }
 
@@ -51,10 +51,9 @@ class Equality(override val game: TennisGame1) : ScoreState {
         }
 
     override fun next(): ScoreState = when {
-        !isOnePlayerAdvantaged -> Default(game)
         isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
         isOnePlayerAdvantaged && aPlayerIsLeadingByAtLeastTwoPoints -> Win(game)
-        else -> this
+        else -> Default(game)
     }
 }
 
