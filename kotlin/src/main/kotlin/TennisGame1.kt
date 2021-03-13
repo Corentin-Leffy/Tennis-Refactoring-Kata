@@ -9,7 +9,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         playerCalled(playerName).wonPoint()
     }
 
-    private fun playerCalled(name: String) = player1.takeIf { name == it.name } ?: player2
+    private fun playerCalled(name: String) = player1.takeIf { name.equals(it.name) } ?: player2
 
     override fun getScore(): String {
         if (scoresAreEqual) return equalScore
