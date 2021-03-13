@@ -70,7 +70,6 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
                     tennisGame.changeState(Advantage(tennisGame))
                 else tennisGame.changeState(Win(tennisGame))
             }
-            else -> tennisGame.changeState(Default(tennisGame))
         }
     }
 }
