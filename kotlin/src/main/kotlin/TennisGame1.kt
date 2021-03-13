@@ -120,7 +120,6 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
 class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String = "Advantage ${tennisGame.leadingPlayer.name}"
 
-
     override fun next() {
         if (tennisGame.aPlayerIsLeadingByTwoPoints) tennisGame.changeState(Win(tennisGame))
     }
