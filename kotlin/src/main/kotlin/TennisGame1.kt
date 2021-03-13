@@ -2,8 +2,6 @@ import kotlin.math.abs
 
 class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
 
-    private val pointsPlayer2
-        get() = player2.points
     private val player1 = Player(player1Name)
     private val player2 = Player(player2Name)
 
@@ -21,21 +19,21 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         return basicScore()
     }
 
-    private fun aPlayerHasAdvantage() = player1.points >= 4 || pointsPlayer2 >= 4
+    private fun aPlayerHasAdvantage() = player1.points >= 4 || player2.points >= 4
 
     private fun endGameScores(): String {
         if (aPlayerIsLeadingByOnePoint()) return "Advantage ${leadingPlayer()}"
         return "Win for ${leadingPlayer()}"
     }
 
-    private fun aPlayerIsLeadingByOnePoint() = abs(player1.points - pointsPlayer2) == 1
+    private fun aPlayerIsLeadingByOnePoint() = abs(player1.points - player2.points) == 1
 
     private fun leadingPlayer() =
-        player1Name.takeIf { player1.points > pointsPlayer2 } ?: player2Name
+        player1Name.takeIf { player1.points > player2.points } ?: player2Name
 
-    private fun scoresAreEqual() = player1.points == pointsPlayer2
+    private fun scoresAreEqual() = player1.points == player2.points
 
-    private fun basicScore() = "${player1.points.toScore()}-${pointsPlayer2.toScore()}"
+    private fun basicScore() = "${player1.points.toScore()}-${player2.points.toScore()}"
 
     private fun scoreEquality() =
         when (player1.points) {
