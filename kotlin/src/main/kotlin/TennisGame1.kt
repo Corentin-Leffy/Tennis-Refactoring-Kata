@@ -113,7 +113,6 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
 
     override fun next() {
         val newScoreState = when {
-            tennisGame.scoresAreEqual -> Equality(tennisGame)
             tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
             tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByTwoPoints -> Win(tennisGame)
             else -> Default(tennisGame)
