@@ -22,6 +22,9 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
 
     private fun endGameScores(): String {
         val pointsDifference = abs(pointsPlayer1 - pointsPlayer2)
+        if (pointsDifference == 1) {
+            return "Advantage ${leadingPlayer()}"
+        }
         val minusResult = pointsPlayer1 - pointsPlayer2
         return when {
             minusResult == 1 -> "Advantage ${leadingPlayer()}"
