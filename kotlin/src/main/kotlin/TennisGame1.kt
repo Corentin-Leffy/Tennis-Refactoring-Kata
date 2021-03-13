@@ -17,6 +17,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (pointsPlayer1 >= 4 || pointsPlayer2 >= 4) {
             return endGameScores()
         }
+        return "${pointsPlayer1.toScore()}-${pointsPlayer2.toScore()}"
         var score = ""
         var tempScore: Int
         for (i in 1..2) {
