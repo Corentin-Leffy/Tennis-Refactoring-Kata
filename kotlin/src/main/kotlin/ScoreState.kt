@@ -1,9 +1,13 @@
+import kotlin.math.abs
+
 interface ScoreState {
-    val tennisGame: TennisGame1
+    val game: TennisGame1
     fun get(): String
     fun next(): ScoreState
 
-    val areScoreEqual: Boolean get() = tennisGame.player1.points == tennisGame.player2.points
+    val areScoreEqual: Boolean get() = game.player1.points == game.player2.points
 
-    val isOnePlayerAdvantaged: Boolean get() = tennisGame.player1.points >= 4 || tennisGame.player2.points >= 4
+    val isOnePlayerAdvantaged: Boolean get() = game.player1.points >= 4 || game.player2.points >= 4
+
+    val aPlayerIsLeadingByOnePoint get() = abs(game.player1.points - game.player2.points) == 1
 }
