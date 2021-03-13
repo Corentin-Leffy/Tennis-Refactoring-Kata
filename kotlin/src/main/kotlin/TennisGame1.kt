@@ -17,7 +17,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
             return scoreEquality(score)
         }
         if (score1 >= 4 || score2 >= 4) {
-            score = endGameScores(score)
+            return endGameScores(score)
         } else {
             for (i in 1..2) {
                 if (i == 1)
