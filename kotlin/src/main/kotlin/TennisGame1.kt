@@ -2,14 +2,14 @@ import kotlin.math.abs
 
 class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
 
-    private var pointsPlayer1: Int = 0
+    private val pointsPlayer1
+        get() = player1.points
     private var pointsPlayer2: Int = 0
     private val player1 = Player(player1Name)
     private val player2 = Player(player2Name)
 
     override fun wonPoint(playerName: String) {
         if (playerName == player1Name) {
-            pointsPlayer1 += 1
             player1.wonPoint()
         } else {
             pointsPlayer2 += 1
