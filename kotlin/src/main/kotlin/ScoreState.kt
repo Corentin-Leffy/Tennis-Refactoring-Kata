@@ -10,4 +10,6 @@ interface ScoreState {
     val isOnePlayerAdvantaged: Boolean get() = game.player1.points >= 4 || game.player2.points >= 4
 
     val aPlayerIsLeadingByOnePoint get() = abs(game.player1.points - game.player2.points) == 1
+
+    val aPlayerIsLeadingByTwoPoints get() = abs(game.player1.points - game.player2.points) == 2
 }
