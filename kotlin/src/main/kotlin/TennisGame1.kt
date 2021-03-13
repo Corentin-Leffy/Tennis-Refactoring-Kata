@@ -16,7 +16,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
-    internal val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
+    internal val aPlayerHasAdvantage get() = score.isOnePlayerAdvantaged
 
     internal val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
