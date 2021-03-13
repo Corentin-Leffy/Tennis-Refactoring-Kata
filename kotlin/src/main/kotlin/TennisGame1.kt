@@ -21,13 +21,14 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
     private fun aPlayerHasAdvantage() = pointsPlayer1 >= 4 || pointsPlayer2 >= 4
 
     private fun endGameScores(): String {
-        if (abs(pointsPlayer1 - pointsPlayer2) == 1) {
-            return "Advantage ${leadingPlayer()}"
-        }
+        if (aPlayerIsLeadingByOnePoint()) return "Advantage ${leadingPlayer()}"
         return "Win for ${leadingPlayer()}"
     }
 
-    private fun leadingPlayer() = player1Name.takeIf { pointsPlayer1 > pointsPlayer2  } ?: player2Name
+    private fun aPlayerIsLeadingByOnePoint() = abs(pointsPlayer1 - pointsPlayer2) == 1
+
+    private fun leadingPlayer() =
+        player1Name.takeIf { pointsPlayer1 > pointsPlayer2 } ?: player2Name
 
     private fun scoresAreEqual() = pointsPlayer1 == pointsPlayer2
 
