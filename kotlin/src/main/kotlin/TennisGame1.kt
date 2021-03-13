@@ -33,7 +33,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
             else -> "Deuce"
         }
 
-    private val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
+    internal val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
 
     private val endGameScore: String
         get() {
@@ -113,9 +113,10 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
 
     override fun next() {
         val newScoreState = when {
+            !tennisGame.aPlayerHasAdvantage -> Default(tennisGame)
             tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
             tennisGame.aPlayerIsLeadingByTwoPoints -> Win(tennisGame)
-            else -> Default(tennisGame)
+            else -> return
         }
         tennisGame.changeState(newScoreState)
     }
