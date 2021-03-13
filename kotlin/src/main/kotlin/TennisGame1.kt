@@ -24,8 +24,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
 
 class Default(override val game: TennisGame1) : ScoreState {
-    override fun get(): String =
-        "${game.player1.points.toScore()}-${game.player2.points.toScore()}"
+    override fun get(): String = "${game.player1.points.toScore()}-${game.player2.points.toScore()}"
 
     override fun next(): ScoreState = when {
         areScoreEqual -> Equality(game)
