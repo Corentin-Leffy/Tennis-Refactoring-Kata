@@ -27,19 +27,11 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     internal val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
 
-    private val endGameScore: String
-        get() {
-            if (aPlayerIsLeadingByOnePoint) return "Advantage ${leadingPlayer.name}"
-            return "Win for ${leadingPlayer.name}"
-        }
-
     internal val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
     internal val aPlayerIsLeadingByTwoPoints get() = abs(player1.points - player2.points) >= 2
 
     internal val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
-
-    private val basicScore get() = "${player1.points.toScore()}-${player2.points.toScore()}"
 
     private fun Int.toScore() = when (this) {
         0 -> "Love"
