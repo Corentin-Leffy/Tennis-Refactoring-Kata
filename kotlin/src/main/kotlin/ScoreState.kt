@@ -11,5 +11,5 @@ interface ScoreState {
 
     val aPlayerIsLeadingByOnePoint get() = abs(game.player1.points - game.player2.points) == 1
 
-    val aPlayerIsLeadingByTwoPoints get() = abs(game.player1.points - game.player2.points) == 2
+    val aPlayerIsLeadingByAtLeastTwoPoints get() = abs(game.player1.points - game.player2.points) >= 2
 }
