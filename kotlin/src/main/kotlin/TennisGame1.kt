@@ -1,3 +1,4 @@
+import score.Win
 import kotlin.math.abs
 
 class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
@@ -87,8 +88,3 @@ class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     }
 }
 
-class Win(override val tennisGame: TennisGame1) : ScoreState {
-    override fun score(): String = "Win for ${tennisGame.leadingPlayer.name}"
-
-    override fun next() { }
-}
