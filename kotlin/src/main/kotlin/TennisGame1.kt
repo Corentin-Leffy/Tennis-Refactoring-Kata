@@ -12,7 +12,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
             pointsPlayer1 += 1
             player1.wonPoint()
         }
-        else
+        else 
             pointsPlayer2 += 1
     }
 
