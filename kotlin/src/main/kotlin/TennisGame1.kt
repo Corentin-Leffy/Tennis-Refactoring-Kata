@@ -10,13 +10,13 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         playerCalled(playerName).wonPoint()
     }
 
-    private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
-
     override fun getScore(): String = when {
         scoresAreEqual -> equalScore
         aPlayerHasAdvantage -> endGameScore
         else -> basicScore
     }
+
+    private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
     private val scoresAreEqual get() = player1.points == player2.points
 
@@ -63,13 +63,12 @@ data class Player(val name: String) {
 }
 
 
-sealed class ScoreState(
-    private val tennisGame: TennisGame1
-) {
-    abstract fun score(): String
+interface ScoreState {
+    val tennisGame: TennisGame1
+    fun score(): String
 }
 
-class DefaultScore(tennisGame: TennisGame1) : ScoreState(tennisGame) {
+class DefaultScore(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
         return ""
     }
