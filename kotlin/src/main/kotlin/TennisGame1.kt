@@ -19,7 +19,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
-    private val scoresAreEqual get() = player1.points == player2.points
+    internal val scoresAreEqual get() = player1.points == player2.points
 
     private val equalScore
         get() = when (player1.points) {
@@ -37,9 +37,11 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
             return "Win for ${leadingPlayer.name}"
         }
 
-    private val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
+    internal val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
-    val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
+    internal val aPlayerIsLeadingByTwoPoints get() = abs(player1.points - player2.points) == 2
+
+    internal val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
     private val basicScore get() = "${player1.points.toScore()}-${player2.points.toScore()}"
 
@@ -48,6 +50,10 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         1 -> "Fifteen"
         2 -> "Thirty"
         else -> "Forty"
+    }
+
+    internal fun changeState(newScoreState: ScoreState) {
+        scoreState = newScoreState
     }
 
 }
@@ -71,29 +77,58 @@ interface ScoreState {
 }
 
 class Default(override val tennisGame: TennisGame1) : ScoreState {
-    override fun score(): String {
-        return ""
-    }
+    override fun score(): String =
+        "${tennisGame.player1.points.toScore()}-${tennisGame.player2.points.toScore()}"
 
     override fun next() {
+        when {
+            tennisGame.scoresAreEqual -> {
+                val newScoreState = Equality(tennisGame)
+                tennisGame.changeState(newScoreState)
+            }
+            tennisGame.aPlayerIsLeadingByOnePoint -> {
+                val newScoreState = Advantage(tennisGame)
+                tennisGame.changeState(newScoreState)
+            }
+            tennisGame.aPlayerIsLeadingByTwoPoints -> {
+                val newScoreState = Win(tennisGame)
+                tennisGame.changeState(newScoreState)
+            }
+        }
+    }
+
+    private fun Int.toScore() = when (this) {
+        0 -> "Love"
+        1 -> "Fifteen"
+        2 -> "Thirty"
+        else -> "Forty"
     }
 }
 
 class Equality(override val tennisGame: TennisGame1) : ScoreState {
-    override fun score(): String {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
+    override fun score(): String =
+        when (tennisGame.player1.points) {
+            0 -> "Love-All"
+            1 -> "Fifteen-All"
+            2 -> "Thirty-All"
+            else -> "Deuce"
+        }
 
     override fun next() {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        if (tennisGame.aPlayerIsLeadingByOnePoint) {
+            tennisGame.changeState(Advantage(tennisGame))
+        } else {
+            tennisGame.changeState(Default(tennisGame))
+        }
     }
 }
 
 class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String = "Advantage ${tennisGame.leadingPlayer.name}"
 
+
     override fun next() {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+        if (tennisGame.aPlayerIsLeadingByTwoPoints) tennisGame.changeState(Win(tennisGame))
     }
 }
 
