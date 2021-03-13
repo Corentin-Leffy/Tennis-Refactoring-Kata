@@ -26,13 +26,13 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
                 score += "-"
                 tempScore = pointsPlayer2
             }
-            score += scoreOf(tempScore)
+            score += tempScore.toScore()
         }
 
         return score
     }
 
-    private fun scoreOf(tempScore: Int) = when (tempScore) {
+    private fun Int.toScore() = when (this) {
         0 -> "Love"
         1 -> "Fifteen"
         2 -> "Thirty"
