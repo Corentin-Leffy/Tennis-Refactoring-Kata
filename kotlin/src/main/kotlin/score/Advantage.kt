@@ -1,6 +1,5 @@
 package score
 
-import Equality
 import ScoreState
 import TennisGame1
 

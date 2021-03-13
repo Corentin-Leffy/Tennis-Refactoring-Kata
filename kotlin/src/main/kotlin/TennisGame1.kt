@@ -1,4 +1,5 @@
 import score.Advantage
+import score.Equality
 import score.Win
 
 class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
@@ -39,22 +40,6 @@ class Default(override val game: TennisGame1) : ScoreState {
         1 -> "Fifteen"
         2 -> "Thirty"
         else -> "Forty"
-    }
-}
-
-class Equality(override val game: TennisGame1) : ScoreState {
-    override fun get(): String =
-        when (game.player1.points) {
-            0 -> "Love-All"
-            1 -> "Fifteen-All"
-            2 -> "Thirty-All"
-            else -> "Deuce"
-        }
-
-    override fun next(): ScoreState = when {
-        isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
-        isOnePlayerAdvantaged && aPlayerIsLeadingByAtLeastTwoPoints -> Win(game)
-        else -> Default(game)
     }
 }
 
