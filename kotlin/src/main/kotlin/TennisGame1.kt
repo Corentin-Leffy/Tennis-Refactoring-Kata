@@ -19,20 +19,20 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (score1 >= 4 || score2 >= 4) {
             return endGameScores(score)
         }
-            for (i in 1..2) {
-                if (i == 1)
-                    tempScore = score1
-                else {
-                    score += "-"
-                    tempScore = score2
-                }
-                when (tempScore) {
-                    0 -> score += "Love"
-                    1 -> score += "Fifteen"
-                    2 -> score += "Thirty"
-                    3 -> score += "Forty"
-                }
+        for (i in 1..2) {
+            if (i == 1)
+                tempScore = score1
+            else {
+                score += "-"
+                tempScore = score2
             }
+            when (tempScore) {
+                0 -> score += "Love"
+                1 -> score += "Fifteen"
+                2 -> score += "Thirty"
+                3 -> score += "Forty"
+            }
+        }
 
         return score
     }
