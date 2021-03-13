@@ -1,6 +1,6 @@
 import kotlin.math.abs
 
-class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
+class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private val player1 = Player(player1Name)
     private val player2 = Player(player2Name)
