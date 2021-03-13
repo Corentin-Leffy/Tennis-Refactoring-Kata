@@ -15,16 +15,17 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     override fun getScore(): String {
         if (scoresAreEqual) return scoreEquality
-        if (aPlayerHasAdvantage) return endGameScores()
+        if (aPlayerHasAdvantage) return endGameScores
         return basicScore
     }
 
     private val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
 
-    private fun endGameScores(): String {
-        if (aPlayerIsLeadingByOnePoint) return "Advantage ${leadingPlayer.name}"
-        return "Win for ${leadingPlayer.name}"
-    }
+    private val endGameScores: String
+        get() {
+            if (aPlayerIsLeadingByOnePoint) return "Advantage ${leadingPlayer.name}"
+            return "Win for ${leadingPlayer.name}"
+        }
 
     private val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
