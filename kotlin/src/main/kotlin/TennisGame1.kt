@@ -19,6 +19,16 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         return basicScore
     }
 
+    private val scoresAreEqual get() = player1.points == player2.points
+
+    private val equalScore
+        get() = when (player1.points) {
+            0 -> "Love-All"
+            1 -> "Fifteen-All"
+            2 -> "Thirty-All"
+            else -> "Deuce"
+        }
+
     private val aPlayerHasAdvantage get() = player1.points >= 4 || player2.points >= 4
 
     private val endGameScore: String
@@ -31,17 +41,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
-    private val scoresAreEqual get() = player1.points == player2.points
-
     private val basicScore get() = "${player1.points.toScore()}-${player2.points.toScore()}"
-
-    private val equalScore
-        get() = when (player1.points) {
-            0 -> "Love-All"
-            1 -> "Fifteen-All"
-            2 -> "Thirty-All"
-            else -> "Deuce"
-        }
 
     private fun Int.toScore() = when (this) {
         0 -> "Love"
