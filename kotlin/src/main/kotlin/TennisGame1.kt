@@ -8,8 +8,10 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
     private val player2 = Player(player2Name)
 
     override fun wonPoint(playerName: String) {
-        if (playerName == player1Name)
+        if (playerName == player1Name) {
             pointsPlayer1 += 1
+            player1.wonPoint()
+        }
         else
             pointsPlayer2 += 1
     }
@@ -57,4 +59,8 @@ data class Player(
 ) {
     var points = 0
         private set
+
+    fun wonPoint() {
+        points++
+    }
 }
