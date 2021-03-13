@@ -1,5 +1,5 @@
 interface ScoreState {
     val tennisGame: TennisGame1
-    val get: String
+    fun get(): String
     fun next()
 }
