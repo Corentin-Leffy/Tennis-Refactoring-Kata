@@ -12,7 +12,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         score.next()
     }
 
-    override fun getScore(): String = score.get()
+    override fun getScore(): String = score.get
 
     private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
@@ -31,8 +31,8 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
 
 class Default(override val tennisGame: TennisGame1) : ScoreState {
-    override fun get(): String =
-        "${tennisGame.player1.points.toScore()}-${tennisGame.player2.points.toScore()}"
+    override val get: String
+        get() = "${tennisGame.player1.points.toScore()}-${tennisGame.player2.points.toScore()}"
 
     override fun next() {
         when {
@@ -54,8 +54,8 @@ class Default(override val tennisGame: TennisGame1) : ScoreState {
 }
 
 class Equality(override val tennisGame: TennisGame1) : ScoreState {
-    override fun get(): String =
-        when (tennisGame.player1.points) {
+    override val get: String
+        get() = when (tennisGame.player1.points) {
             0 -> "Love-All"
             1 -> "Fifteen-All"
             2 -> "Thirty-All"
@@ -75,7 +75,8 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
 }
 
 class Advantage(override val tennisGame: TennisGame1) : ScoreState {
-    override fun get(): String = "Advantage ${tennisGame.leadingPlayer.name}"
+    override val get: String
+        get() = "Advantage ${tennisGame.leadingPlayer.name}"
 
     override fun next() {
         when {
