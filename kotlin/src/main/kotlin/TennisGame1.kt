@@ -1,5 +1,4 @@
 import score.Win
-import kotlin.math.abs
 
 class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
@@ -16,8 +15,6 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
-    internal val aPlayerIsLeadingByOnePoint get() = score.aPlayerIsLeadingByOnePoint
-
     internal val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
     private fun changeState(newScoreState: ScoreState) {
@@ -32,9 +29,7 @@ class Default(override val game: TennisGame1) : ScoreState {
 
     override fun next(): ScoreState = when {
         areScoreEqual -> Equality(game)
-        isOnePlayerAdvantaged && game.aPlayerIsLeadingByOnePoint -> Advantage(
-            game
-        )
+        isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
         isOnePlayerAdvantaged -> Win(game)
         else -> this
     }
@@ -58,9 +53,7 @@ class Equality(override val game: TennisGame1) : ScoreState {
 
     override fun next(): ScoreState = when {
         !isOnePlayerAdvantaged -> Default(game)
-        isOnePlayerAdvantaged && game.aPlayerIsLeadingByOnePoint -> Advantage(
-            game
-        )
+        isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
         isOnePlayerAdvantaged -> Win(game)
         else -> this
     }
