@@ -2,8 +2,9 @@ import kotlin.math.abs
 
 class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
-    private val player1 = Player(player1Name)
-    private val player2 = Player(player2Name)
+    val player1 = Player(player1Name)
+    val player2 = Player(player2Name)
+    private var scoreState: ScoreState = DefaultScore(this)
 
     override fun wonPoint(playerName: String) {
         playerCalled(playerName).wonPoint()
@@ -47,6 +48,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
         2 -> "Thirty"
         else -> "Forty"
     }
+
 }
 
 data class Player(val name: String) {
@@ -61,8 +63,14 @@ data class Player(val name: String) {
 }
 
 
-sealed class ScoreState {
-    abstract val player1: Player
-    abstract val player2: Player
+sealed class ScoreState(
+    private val tennisGame: TennisGame1
+) {
     abstract fun score(): String
+}
+
+class DefaultScore(tennisGame: TennisGame1) : ScoreState(tennisGame) {
+    override fun score(): String {
+        return ""
+    }
 }
