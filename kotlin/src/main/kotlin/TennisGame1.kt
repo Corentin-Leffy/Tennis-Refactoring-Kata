@@ -4,7 +4,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     val player1 = Player(player1Name)
     val player2 = Player(player2Name)
-    private var scoreState: ScoreState = DefaultScore(this)
+    private var scoreState: ScoreState = Default(this)
 
     override fun wonPoint(playerName: String) {
         playerCalled(playerName).wonPoint()
@@ -68,8 +68,14 @@ interface ScoreState {
     fun score(): String
 }
 
-class DefaultScore(override val tennisGame: TennisGame1) : ScoreState {
+class Default(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
         return ""
+    }
+}
+
+class Equality(override val tennisGame: TennisGame1) : ScoreState {
+    override fun score(): String {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
