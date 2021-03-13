@@ -25,14 +25,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (pointsDifference == 1) {
             return "Advantage ${leadingPlayer()}"
         }
-        if (pointsDifference == 2) {
             return "Win for ${leadingPlayer()}"
-        }
-        val minusResult = pointsPlayer1 - pointsPlayer2
-        return when {
-            minusResult >= 2 -> "Win for ${leadingPlayer()}"
-            else -> "Win for ${leadingPlayer()}"
-        }
     }
 
     private fun leadingPlayer() = player1Name.takeIf { pointsPlayer1 > pointsPlayer2  } ?: player2Name
