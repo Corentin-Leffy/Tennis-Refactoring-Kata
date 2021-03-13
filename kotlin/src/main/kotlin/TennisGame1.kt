@@ -11,13 +11,10 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private fun playerCalled(name: String) = player1.takeIf { it.isCalled(name) } ?: player2
 
-    override fun getScore(): String {
-        when {
-            scoresAreEqual -> return equalScore
-        }
-        if (scoresAreEqual) return equalScore
-        if (aPlayerHasAdvantage) return endGameScore
-        return basicScore
+    override fun getScore(): String = when {
+        scoresAreEqual -> equalScore
+        aPlayerHasAdvantage -> endGameScore
+        else -> basicScore
     }
 
     private val scoresAreEqual get() = player1.points == player2.points
