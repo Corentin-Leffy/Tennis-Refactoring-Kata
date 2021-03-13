@@ -11,9 +11,10 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (playerName == player1Name) {
             pointsPlayer1 += 1
             player1.wonPoint()
-        }
-        else 
+        } else {
             pointsPlayer2 += 1
+            player2.wonPoint()
+        }
     }
 
     override fun getScore(): String {
