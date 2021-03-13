@@ -18,19 +18,6 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
             return endGameScores()
         }
         return "${pointsPlayer1.toScore()}-${pointsPlayer2.toScore()}"
-        var score = ""
-        var tempScore: Int
-        for (i in 1..2) {
-            if (i == 1)
-                tempScore = pointsPlayer1
-            else {
-                score += "-"
-                tempScore = pointsPlayer2
-            }
-            score += tempScore.toScore()
-        }
-
-        return score
     }
 
     private fun Int.toScore() = when (this) {
