@@ -79,3 +79,15 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
+
+class Advantage(override val tennisGame: TennisGame1) : ScoreState {
+    override fun score(): String {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    }
+}
+
+class Win(override val tennisGame: TennisGame1) : ScoreState {
+    override fun score(): String {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    }
+}
