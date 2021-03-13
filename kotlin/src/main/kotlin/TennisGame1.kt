@@ -53,7 +53,7 @@ class Equality(override val game: TennisGame1) : ScoreState {
     override fun next(): ScoreState = when {
         !isOnePlayerAdvantaged -> Default(game)
         isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
-        isOnePlayerAdvantaged -> Win(game)
+        isOnePlayerAdvantaged && aPlayerIsLeadingByTwoPoints -> Win(game)
         else -> this
     }
 }
