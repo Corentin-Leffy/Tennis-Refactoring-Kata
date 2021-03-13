@@ -22,14 +22,14 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
     private fun aPlayerHasAdvantage() = player1.points >= 4 || player2.points >= 4
 
     private fun endGameScores(): String {
-        if (aPlayerIsLeadingByOnePoint()) return "Advantage ${leadingPlayer()}"
-        return "Win for ${leadingPlayer()}"
+        if (aPlayerIsLeadingByOnePoint()) return "Advantage ${leadingPlayer().name}"
+        return "Win for ${leadingPlayer().name}"
     }
 
     private fun aPlayerIsLeadingByOnePoint() = abs(player1.points - player2.points) == 1
 
     private fun leadingPlayer() =
-        player1.name.takeIf { player1.points > player2.points } ?: player2.name
+        player1.takeIf { player1.points > player2.points } ?: player2
 
     private fun scoresAreEqual() = player1.points == player2.points
 
