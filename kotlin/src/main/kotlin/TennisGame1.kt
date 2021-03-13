@@ -8,7 +8,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     override fun wonPoint(playerName: String) {
         playerCalled(playerName).wonPoint()
-        //scoreState.next()
+        scoreState.next()
     }
 
     override fun getScore(): String = when {
