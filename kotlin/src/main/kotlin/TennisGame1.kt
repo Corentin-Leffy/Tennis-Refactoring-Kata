@@ -8,6 +8,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     override fun wonPoint(playerName: String) {
         playerCalled(playerName).wonPoint()
+        scoreState.next()
     }
 
     override fun getScore(): String = when {
@@ -66,16 +67,24 @@ data class Player(val name: String) {
 interface ScoreState {
     val tennisGame: TennisGame1
     fun score(): String
+    fun next()
 }
 
 class Default(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
         return ""
     }
+
+    override fun next() {
+    }
 }
 
 class Equality(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun next() {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
@@ -84,10 +93,18 @@ class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun next() {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    }
 }
 
 class Win(override val tennisGame: TennisGame1) : ScoreState {
     override fun score(): String {
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun next() {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
