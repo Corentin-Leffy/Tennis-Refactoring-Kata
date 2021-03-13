@@ -61,4 +61,6 @@ data class Player(val name: String) {
 }
 
 
-sealed class ScoreState
+sealed class ScoreState {
+    
+}
