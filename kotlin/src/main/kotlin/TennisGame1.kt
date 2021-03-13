@@ -29,7 +29,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
     private fun aPlayerIsLeadingByOnePoint() = abs(player1.points - player2.points) == 1
 
     private fun leadingPlayer() =
-        player1Name.takeIf { player1.points > player2.points } ?: player2Name
+        player1.name.takeIf { player1.points > player2.points } ?: player2.name
 
     private fun scoresAreEqual() = player1.points == player2.points
 
