@@ -51,9 +51,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
     }
 }
 
-data class Player(
-    val name: String
-) {
+data class Player(val name: String) {
     var points = 0
         private set
 
