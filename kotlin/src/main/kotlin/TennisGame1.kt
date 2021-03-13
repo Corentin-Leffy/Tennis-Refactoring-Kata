@@ -1,3 +1,5 @@
+import kotlin.math.abs
+
 class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
 
     private var pointsPlayer1: Int = 0
@@ -19,6 +21,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
     private fun aPlayerHasAdvantage() = pointsPlayer1 >= 4 || pointsPlayer2 >= 4
 
     private fun endGameScores(): String {
+        val pointsDifference = abs(pointsPlayer1 - pointsPlayer2)
         val minusResult = pointsPlayer1 - pointsPlayer2
         return when {
             minusResult == 1 -> "Advantage player1"
