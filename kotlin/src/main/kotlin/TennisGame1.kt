@@ -73,11 +73,9 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
 class Advantage(override val tennisGame: TennisGame1) : ScoreState {
     override fun get(): String = "Advantage ${tennisGame.leadingPlayer.name}"
 
-    override fun next(): ScoreState {
-        return when {
-            tennisGame.scoresAreEqual -> Equality(tennisGame)
-            else -> Win(tennisGame)
-        }
+    override fun next(): ScoreState = when {
+        tennisGame.scoresAreEqual -> Equality(tennisGame)
+        else -> Win(tennisGame)
     }
 }
 
