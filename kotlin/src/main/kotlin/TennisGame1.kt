@@ -14,7 +14,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         var score = ""
         var tempScore: Int
         if (scoresAreEqual()) {
-            return scoreEquality(score)
+            return scoreEquality()
         }
         if (score1 >= 4 || score2 >= 4) {
             return endGameScores(score)
@@ -51,14 +51,11 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
 
     private fun scoresAreEqual() = score1 == score2
 
-    private fun scoreEquality(score: String): String {
-        var score3 = score
-        score3 = when (score1) {
+    private fun scoreEquality() =
+        when (score1) {
             0 -> "Love-All"
             1 -> "Fifteen-All"
             2 -> "Thirty-All"
             else -> "Deuce"
         }
-        return score3
-    }
 }
