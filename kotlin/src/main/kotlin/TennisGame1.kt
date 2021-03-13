@@ -13,7 +13,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
     override fun getScore(): String {
         var score = ""
         var tempScore: Int
-        if (score1 == score2) {
+        if (scoresAreEqual()) {
             score = scoreEquality(score)
         } else if (score1 >= 4 || score2 >= 4) {
             val minusResult = score1 - score2
@@ -41,6 +41,8 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         }
         return score
     }
+
+    private fun scoresAreEqual() = score1 == score2
 
     private fun scoreEquality(score: String): String {
         var score3 = score
