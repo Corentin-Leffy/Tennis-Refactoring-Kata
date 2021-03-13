@@ -24,7 +24,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     internal val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
-    internal fun changeState(newScoreState: ScoreState) {
+    private fun changeState(newScoreState: ScoreState) {
         score = newScoreState
     }
 }
@@ -34,13 +34,13 @@ class Default(override val tennisGame: TennisGame1) : ScoreState {
     override fun get(): String =
         "${tennisGame.player1.points.toScore()}-${tennisGame.player2.points.toScore()}"
 
-    override fun next(): ScoreState {
-        return when {
-            tennisGame.scoresAreEqual -> Equality(tennisGame)
-            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
-            tennisGame.aPlayerHasAdvantage -> Win(tennisGame)
-            else -> this
-        }
+    override fun next(): ScoreState = when {
+        tennisGame.scoresAreEqual -> Equality(tennisGame)
+        tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(
+            tennisGame
+        )
+        tennisGame.aPlayerHasAdvantage -> Win(tennisGame)
+        else -> this
     }
 
     private fun Int.toScore() = when (this) {
@@ -60,13 +60,13 @@ class Equality(override val tennisGame: TennisGame1) : ScoreState {
             else -> "Deuce"
         }
 
-    override fun next(): ScoreState {
-        return when {
-            !tennisGame.aPlayerHasAdvantage -> Default(tennisGame)
-            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(tennisGame)
-            tennisGame.aPlayerHasAdvantage -> Win(tennisGame)
-            else -> this
-        }
+    override fun next(): ScoreState = when {
+        !tennisGame.aPlayerHasAdvantage -> Default(tennisGame)
+        tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(
+            tennisGame
+        )
+        tennisGame.aPlayerHasAdvantage -> Win(tennisGame)
+        else -> this
     }
 }
 
