@@ -37,17 +37,14 @@ class Default(override val tennisGame: TennisGame1) : ScoreState {
         "${tennisGame.player1.points.toScore()}-${tennisGame.player2.points.toScore()}"
 
     override fun next() {
-        val newScoreState = when {
-            tennisGame.scoresAreEqual -> Equality(tennisGame)
-            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByOnePoint -> Advantage(
-                tennisGame
-            )
-            tennisGame.aPlayerHasAdvantage && tennisGame.aPlayerIsLeadingByAtLeastTwoPoints -> Win(
-                tennisGame
-            )
-            else -> return
+        when {
+            tennisGame.scoresAreEqual -> tennisGame.changeState(Equality(tennisGame))
+            tennisGame.aPlayerHasAdvantage -> {
+                if (tennisGame.aPlayerIsLeadingByOnePoint)
+                    tennisGame.changeState(Advantage(tennisGame))
+                else tennisGame.changeState(Win(tennisGame))
+            }
         }
-        tennisGame.changeState(newScoreState)
     }
 
     private fun Int.toScore() = when (this) {
