@@ -39,7 +39,7 @@ class TennisGame1(player1Name: String, player2Name: String) : TennisGame {
 
     private val aPlayerIsLeadingByOnePoint get() = abs(player1.points - player2.points) == 1
 
-    private val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
+    val leadingPlayer get() = player1.takeIf { player1.points > player2.points } ?: player2
 
     private val basicScore get() = "${player1.points.toScore()}-${player2.points.toScore()}"
 
@@ -100,9 +100,7 @@ class Advantage(override val tennisGame: TennisGame1) : ScoreState {
 }
 
 class Win(override val tennisGame: TennisGame1) : ScoreState {
-    override fun score(): String {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
+    override fun score(): String = "Win for ${tennisGame.leadingPlayer.name}"
 
     override fun next() { }
 }
