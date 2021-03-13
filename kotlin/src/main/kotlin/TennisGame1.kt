@@ -33,7 +33,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
                     3 -> score += "Forty"
                 }
             }
-        
+
         return score
     }
 
