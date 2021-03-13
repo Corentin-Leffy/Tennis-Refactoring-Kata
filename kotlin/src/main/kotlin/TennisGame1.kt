@@ -62,5 +62,6 @@ data class Player(val name: String) {
 
 
 sealed class ScoreState {
-    
+    abstract val player1: Player
+    abstract val player2: Player
 }
