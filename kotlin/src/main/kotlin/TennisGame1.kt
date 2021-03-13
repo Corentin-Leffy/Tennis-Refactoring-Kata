@@ -27,7 +27,7 @@ class Default(override val game: TennisGame1) : ScoreState {
     override fun get(): String = "${game.player1.points.toScore()}-${game.player2.points.toScore()}"
 
     override fun next(): ScoreState = when {
-        areScoreEqual -> Equality(game)
+        areScoresEqual -> Equality(game)
         isOnePlayerAdvantaged && aPlayerIsLeadingByOnePoint -> Advantage(game)
         isOnePlayerAdvantaged -> Win(game)
         else -> this
@@ -62,7 +62,7 @@ class Advantage(override val game: TennisGame1) : ScoreState {
     override fun get(): String = "Advantage ${game.leadingPlayer.name}"
 
     override fun next(): ScoreState = when {
-        areScoreEqual -> Equality(game)
+        areScoresEqual -> Equality(game)
         else -> Win(game)
     }
 }
