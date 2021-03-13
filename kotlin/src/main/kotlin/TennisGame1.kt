@@ -14,7 +14,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         var score = ""
         var tempScore: Int
         if (scoresAreEqual()) {
-            score = scoreEquality(score)
+            return scoreEquality(score)
         } else if (score1 >= 4 || score2 >= 4) {
             val minusResult = score1 - score2
             score = when {
